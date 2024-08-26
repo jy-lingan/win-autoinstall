@@ -1,46 +1,29 @@
 @echo off
 
-:: Crear directorio temporal para descargar los instaladores
-mkdir %TEMP%\software_installers
-cd %TEMP%\software_installers
-
-:: Descargar Google Chrome
-echo Descargando Google Chrome...
-bitsadmin /transfer ChromeDownload https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi %TEMP%\software_installers\googlechrome.msi
-
-:: Descargar Brave
-echo Descargando Brave...
-bitsadmin /transfer BraveDownload https://laptop-updates.brave.com/latest/win64 %TEMP%\software_installers\brave_installer.exe
-
-:: Descargar VLC
-echo Descargando VLC...
-bitsadmin /transfer VLCDownload https://get.videolan.org/vlc/last/win64/vlc-3.0.18-win64.exe %TEMP%\software_installers\vlc_installer.exe
-
-:: Descargar WinRAR
-echo Descargando WinRAR...
-bitsadmin /transfer WinRARDownload https://www.winrar.es/descargas/59/winrar-x64-62b2.exe %TEMP%\software_installers\winrar_installer.exe
-
-:: Instalar Google Chrome
+:: Descargar e instalar Google Chrome
 echo Instalando Google Chrome...
-msiexec /i %TEMP%\software_installers\googlechrome.msi /qn
+cd %TEMP%
+curl -L -o ChromeSetup.exe https://dl.google.com/chrome/install/GoogleChromeStandaloneEnterprise64.msi
+msiexec /i ChromeSetup.exe /quiet /norestart
+echo Google Chrome instalado.
 
-:: Instalar Brave
-echo Instalando Brave...
-%TEMP%\software_installers\brave_installer.exe --silent --install-directory="C:\Program Files\BraveSoftware"
+:: Descargar e instalar Brave Browser
+echo Instalando Brave Browser...
+curl -L -o BraveSetup.exe https://laptop-updates.brave.com/latest/winx64
+start /wait BraveSetup.exe /silent /noqrcode
+echo Brave Browser instalado.
 
-:: Instalar VLC
+:: Descargar e instalar VLC
 echo Instalando VLC...
-%TEMP%\software_installers\vlc_installer.exe /S
+curl -L -o VLCSetup.exe https://get.videolan.org/vlc/3.0.18/win64/vlc-3.0.18-win64.exe
+start /wait VLCSetup.exe /L=es /S
+echo VLC instalado.
 
-:: Instalar WinRAR
+:: Descargar e instalar WinRAR
 echo Instalando WinRAR...
-%TEMP%\software_installers\winrar_installer.exe /S
+curl -L -o WinRARSetup.exe https://www.rarlab.com/rar/winrar-x64-602es.exe
+start /wait WinRARSetup.exe /S
+echo WinRAR instalado.
 
-:: Limpiar los instaladores descargados
-echo Limpiando archivos temporales...
-rd /s /q %TEMP%\software_installers
-
-echo Instalacion completada.
-
+echo Todo el software se ha instalado correctamente.
 pause
-exit
