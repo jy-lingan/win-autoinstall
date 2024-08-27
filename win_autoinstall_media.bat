@@ -9,7 +9,7 @@ echo Google Chrome instalado.
 
 :: Descargar e instalar Brave Browser
 echo Instalando Brave Browser...
-curl -L -o BraveSetup.exe https://laptop-updates.brave.com/latest/winx64
+curl -L -o BraveSetup.exe https://github.com/brave/brave-browser/releases/download/v1.69.153/BraveBrowserStandaloneSilentSetup.exe
 start /wait BraveSetup.exe /silent /noqrcode
 echo Brave Browser instalado.
 
@@ -21,7 +21,7 @@ echo VLC instalado.
 
 :: Descargar e instalar WinRAR
 echo Instalando WinRAR...
-curl -L -o WinRARSetup.exe https://www.rarlab.com/rar/winrar-x64-602es.exe
+curl -L -o WinRARSetup.exe https://www.rarlab.com/rar/winrar-x64-701es.exe
 start /wait WinRARSetup.exe /S
 echo WinRAR instalado.
 
